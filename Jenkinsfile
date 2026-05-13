@@ -1,29 +1,18 @@
-
-pipeline
-{
+pipeline{
     agent any
-    stages
-    {
-        stage('build')
-        {
-            steps
-            {
-               echo "Building"             
-                }
-            }            
-stage('test')
-        {
-            steps
-            {
-                echo 'Test'                
-                }
-            }            
-stage('deploy')
-        {
-            steps('deploy')
-            {
-               echo 'deploy'                
-                }
-        
-        }}
+    stages{
+        stage('System Info') {
+            steps {
+                sh 'hostname'
+                sh 'uptime'
+                sh 'df -h'
+            }
+        }
+
+        stage('List Files') {
+            steps {
+                sh 'ls -lrt'
+            }
+        }
+    }
 }
